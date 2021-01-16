@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_16_173315) do
+ActiveRecord::Schema.define(version: 2021_01_16_195207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_01_16_173315) do
     t.bigint "room_id", null: false
     t.bigint "user_id", null: false
     t.string "date"
-    t.string "start_time"
+    t.time "start_time"
     t.integer "duration_minutes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
