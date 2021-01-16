@@ -1,0 +1,15 @@
+<h1>Seja bem vindo!</h1>
+
+<div class="meetings">
+<% @meetings.each do |meeting| %>
+  <p><strong><%= meeting.title %></strong> dia <%= meeting.date %> as <%= meeting.start_time %> com duração de <%= meeting.duration_minutes %> minutos na <strong><%= meeting.room.name %></strong></p>
+  <p>Por: <%= meeting.user.first_name%> <%= meeting.user.last_name%> </p>
+  <% if current_user == meeting.user %>
+                <%= link_to "Deletar",
+                meeting_path(meeting.id),
+                method: :delete,
+                data: { confirm: "Tem certeza que quer deletar a reunião #{meeting.title}?" },
+                class: "btn btn-warning" %>
+  <% end %>
+<% end %>
+</div>
