@@ -3,6 +3,7 @@
   <div class="mt-5 d-flex justify-content-center flex-column col-8">
     <%= simple_form_for @room  do |f| %>
       <%= f.input :name, label: "Nome", input_html: { class: 'apartment_form_string' }%> 
+      <%= f.input :floor, label: "Andar", collection: @floors%>
       <%= f.input :capacity, label: "Capacidade"%>
       <%= f.submit class: "btn btn-primary mb-5" %>
     <% end %>

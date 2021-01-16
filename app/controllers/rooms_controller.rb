@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :set_room, only: [:destroy]
 
   def index
     @rooms = Room.all
@@ -6,6 +7,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    @floors = ["2", "3", "4"]
   end
 
   def create
@@ -18,11 +20,17 @@ class RoomsController < ApplicationController
   end
 
   def destroy
+    @room.destroy
+    redirect_to rooms_path
   end
 
   private
 
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
   def room_params
-    params.require(:room).permit(:capacity, :name)
+    params.require(:room).permit(:capacity, :name, :floor)
 end
 end
