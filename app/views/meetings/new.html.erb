@@ -1,0 +1,13 @@
+  <div class="container mt-3">
+  <h5>Nova Reunião</h5>
+  <div class="mt-5 d-flex justify-content-center flex-column col-8">
+    <%= simple_form_for @meeting  do |f| %>
+      <%= f.input :title, label: "Assunto"%> 
+      <%= f.association :room, label: "Qual sala de reunião?"%>
+      <%= f.input :date, label: "Data"%>
+      <%= f.input :start_time, label: "Hora"%>
+      <%= f.input :duration_minutes, label: "Duração"%>
+      <%= f.submit class: "btn btn-primary mb-5" %>
+    <% end %>
+  </div>
+</div>
