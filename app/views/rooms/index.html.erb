@@ -1,0 +1,18 @@
+<div class="container">
+  <% @rooms.each do |room| %>
+    <div class="room">
+      <ul>
+        <li><p><%= room.name%> no <strong><%= room.floor %>o andar</strong>, capacidade: <%=room.capacity%></p>
+            <%= link_to "Deletar",
+                room_path(room.id),
+                method: :delete,
+                data: { confirm: "Tem certeza que quer deletar a #{room.name}?" },
+                class: "btn btn-warning" %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= link_to "Nova Sala", new_room_path, class: 'btn btn-primary' %>
+  </div>
+</div>
