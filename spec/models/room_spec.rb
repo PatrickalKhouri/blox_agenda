@@ -12,7 +12,7 @@ RSpec.describe Room, type: :model do
       expect(room).to eq(false) 
     end
 
-    it 'ensures capatity to be greater than 0' do
+    it 'ensures capacity to be greater than 0' do
       room = Room.new( name: "Room 1", capacity: 0).save
       expect(room).to eq(false)
     end

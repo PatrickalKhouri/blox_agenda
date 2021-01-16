@@ -1,0 +1,7 @@
+<div class="container">
+<% @rooms.each do |room| %>
+  <div class=room>
+    <p><%= room.name%>, capacity: <%=room.capacity%></p>
+  </div>
+<% end %>
+</div>

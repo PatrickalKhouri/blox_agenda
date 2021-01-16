@@ -13,7 +13,7 @@
         <a class="nav-link" href="#">Agenda</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Salas</a>
+        <%= link_to "Salas", rooms_path, class: "nav-link" %>
       </li>
         <% if user_signed_in? %>
           <div class="dropdown show">
