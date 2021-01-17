@@ -4,7 +4,7 @@
     <%= simple_form_for @meeting  do |f| %>
       <%= f.input :title, label: "Assunto"%> 
       <%= f.association :room, label: "Qual sala de reunião?"%>
-      <%= f.input :date, label: "Data", as: :date%>
+      <%= f.input :date, label: "Data"%>
       <%= f.input :start_time, label: "Hora", as: :time, :minute_step => 15 %>
       <%= f.input :duration_minutes, label: "Duração", :minute_step => 15 %>
       <%= f.submit class: "btn btn-primary mb-5" %>
