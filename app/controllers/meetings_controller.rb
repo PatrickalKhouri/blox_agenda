@@ -15,23 +15,17 @@ class MeetingsController < ApplicationController
     @meetings_on_same_day_and_room = Meeting.where(date: @meeting.date, room: @meeting.room )
     end_time = final_time(@meeting)
     if check_business_hours(@meeting)
+      flash[:alert] = "Reuniões só podem ser marcadas das 8 as 18h"
       render :new 
     else
       start_end_array = start_and_end_times(@meetings_on_same_day_and_room)
       overlap_check = 0
-      start_end_array.each do |time_range|
-        if @meeting.start_time.strftime("%k:%M") <= time_range[1].strftime("%k:%M") && time_range[0].strftime("%k:%M") <= end_time.strftime("%k:%M")
-          overlap_check += 1
-        end
-      end
-      if overlap_check >= 1
+      overlap_index = overlap(start_end_array, @meeting, end_time, overlap_check)
+      if overlap_index >= 1
+        flash[:alert] = "Já existe uma reunião nesse horário na mesma sala." 
         render :new
       else
-        if @meeting.save 
-          redirect_to meetings_path
-        else
-        render :new
-        end
+       create_meeting(@meeting)
       end
     end
   end
@@ -42,6 +36,15 @@ class MeetingsController < ApplicationController
   end
 
   private
+
+  def overlap(start_end_array, meeting, meeting_end_time, overlap_check)
+    start_end_array.each do |time_range|
+      if (meeting.start_time.strftime("%k:%M") <= time_range[1].strftime("%k:%M") && time_range[0].strftime("%k:%M") <= meeting_end_time.strftime("%k:%M")) || (meeting.start_time.strftime("%k:%M") <= time_range[0].strftime("%k:%M") && time_range[1].strftime("%k:%M") <= meeting_end_time.strftime("%k:%M")) 
+        overlap_check += 1
+      end
+    end
+    overlap_check
+  end
 
   def duration_seconds(minutes)
     seconds = minutes * 60
@@ -72,7 +75,7 @@ class MeetingsController < ApplicationController
     else
       render :new
     end
-  end 
+  end
 
   def set_meeting
     @meeting = Meeting.find(params[:id])
