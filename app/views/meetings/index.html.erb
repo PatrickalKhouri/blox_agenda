@@ -2,7 +2,7 @@
 
 <div class="meetings">
 <% @meetings.each do |meeting| %>
-  <p><strong><%= meeting.title %></strong> dia <%= meeting.date %> as <%= meeting.start_time %> com duração de <%= meeting.duration_minutes %> minutos na <strong><%= meeting.room.name %></strong></p>
+  <p><strong><%= meeting.title %></strong> dia <%= meeting.date %> as <%= meeting.start_time.strftime("%k:%M") %> com duração de <%= meeting.duration_minutes/60 %> minutos na <strong><%= meeting.room.name %></strong></p>
   <p>Por: <%= meeting.user.first_name%> <%= meeting.user.last_name%> </p>
   <% if current_user == meeting.user %>
                 <%= link_to "Deletar",
@@ -12,4 +12,7 @@
                 class: "btn btn-warning" %>
   <% end %>
 <% end %>
+  <div>
+    <%= link_to "Nova Reunião", new_meeting_path, class: 'btn btn-primary' %>
+  </div>
 </div>
