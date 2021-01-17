@@ -31,7 +31,7 @@ class MeetingsController < ApplicationController
       else
        create_meeting(@meeting)
       end
-    end
+   end
   end
 
   def destroy
