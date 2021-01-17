@@ -3,7 +3,6 @@ class Meeting < ApplicationRecord
   belongs_to :user
   validates :date, :start_time, :duration_minutes, :title, presence: true
   validates :duration_minutes, :numericality => { greater_than_or_equal_to: 15}
-  validate :meeting_conflicts, :before => :create
 
   private
 
