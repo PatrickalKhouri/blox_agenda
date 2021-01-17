@@ -1,8 +1,12 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: [:destroy]
+  before_action :set_meeting, only: [:show, :destroy]
 
   def index
     @meetings = Meeting.all
+  end
+
+  def show
+    @end_time = final_time(@meeting)
   end
 
   def new

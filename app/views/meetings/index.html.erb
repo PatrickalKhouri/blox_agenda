@@ -1,25 +1,13 @@
-<h1>Agenda Blox</h1>
+<div>
+  <h1>Agenda Blox</h1>
 
-<%= month_calendar(events: @meetings, attribute: :date) do |date, meetings| %>
-  <%= date.day %>
+  <%= month_calendar(events: @meetings, attribute: :date) do |date, meetings| %>
+    <%= date.day %>
 
-  <% meetings.each do |meeting| %>
-    <div>
-      <%= meeting.title%> as <%= meeting.start_time.strftime("%k:%M")%>
-    </div>
-  <% end %>
-<% end %>
-
-<div class="meetings">
-<% @meetings.each do |meeting| %>
-  <p><strong><%= meeting.title %></strong> dia <%= meeting.date %> as <%= meeting.start_time.strftime("%k:%M") %> com duração de <%= meeting.duration_minutes %> minutos na <strong><%= meeting.room.name %></strong></p>
-  <p>Por: <%= meeting.user.first_name%> <%= meeting.user.last_name%> </p>
-  <% if current_user == meeting.user %>
-                <%= link_to "Deletar",
-                meeting_path(meeting.id),
-                method: :delete,
-                data: { confirm: "Tem certeza que quer deletar a reunião #{meeting.title}?" },
-                class: "btn btn-warning" %>
+    <% meetings.each do |meeting| %>
+      <div>
+      <%= link_to "#{meeting.title} as #{meeting.start_time.strftime("%k:%M")}", meeting_path(meeting.id) %>
+      </div>
     <% end %>
   <% end %>
 </div>

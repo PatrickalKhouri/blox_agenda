@@ -1,0 +1,15 @@
+<div class="container meeting">
+  <h5><%= @meeting.title %></h5>
+  <p><strong><%=@meeting.room.name%></strong>, no <%=@meeting.room.floor%> andar </p>
+  <p>Dia <%=@meeting.date %></p>
+  <p>Das <%=@meeting.start_time.strftime("%k:%M")%></p>
+  <p>As <%= @end_time.strftime("%k:%M")%> (<%=@meeting.duration_minutes%> minutos)</p>
+  <p>Por <%= @meeting.user.first_name%> <%= @meeting.user.last_name%> </p>
+  <% if current_user == @meeting.user %>
+                <%= link_to "Deletar",
+                meeting_path(@meeting.id),
+                method: :delete,
+                data: { confirm: "Tem certeza que quer deletar a reunião #{@meeting.title}?" },
+                class: "btn btn-warning" %>
+    <% end %>
+</div>
