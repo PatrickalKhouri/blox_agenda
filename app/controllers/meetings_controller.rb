@@ -12,21 +12,28 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(meeting_params)
     @meeting.user = current_user
-    if @meeting.start_time.hour < 8 || @meeting.start_time.hour > 18
-      flash[:alert] = "Reuniões que começam antes das 8 ou depois das 18 não são permitidas"
-      render :new
+    @meetings_on_same_day_and_room = Meeting.where(date: @meeting.date, room: @meeting.room )
+    end_time = final_time(@meeting)
+    if check_business_hours(@meeting)
+      render :new 
     else
-      if @meeting.save 
-        redirect_to meetings_path
-      else
+      start_end_array = start_and_end_times(@meetings_on_same_day_and_room)
+      overlap_check = 0
+      start_end_array.each do |time_range|
+        if @meeting.start_time.strftime("%k:%M") <= time_range[1].strftime("%k:%M") && time_range[0].strftime("%k:%M") <= end_time.strftime("%k:%M")
+          overlap_check += 1
+        end
+      end
+      if overlap_check >= 1
         render :new
+      else
+        if @meeting.save 
+          redirect_to meetings_path
+        else
+        render :new
+        end
       end
     end
-    #end_time = @meeting.start_time + @meeting.duration_minutes
-    #@meetings_on_same_day_and_room = Meeting.where(date: @meeting.date, room: @meeting.room )
-    #create_meeting(@meeting) if @meetings_on_same_day_and_room.count == 0
-    #1 = Começa em uma reunião ja acontecendo
-    #2 = Começa antes, mas invade o horario de uma ja acontecendo
   end
 
   def destroy
@@ -36,10 +43,26 @@ class MeetingsController < ApplicationController
 
   private
 
+  def duration_seconds(minutes)
+    seconds = minutes * 60
+    seconds
+  end
+
+ def final_time(meeting)
+  end_time = meeting.start_time + duration_seconds(meeting.duration_minutes)
+ end
+
+  def start_and_end_times(object_array)
+    object_array.map do |object|
+      end_time = object.start_time + duration_seconds(object.duration_minutes)
+      [object.start_time, end_time]
+    end
+  end
+
   def check_business_hours(meeting)
-    if meeting.start_time < "08:00" || meeting.start_time > "18:00"
-      flash[:alert] = "Reuniões que começam antes das 8 ou depois das 18 não são permitidas"
-      render :new
+    end_time = final_time(meeting)
+    if meeting.start_time.hour < 8 || end_time.hour >= 18
+      true
     end
   end 
 

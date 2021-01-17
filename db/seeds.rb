@@ -22,9 +22,9 @@ puts "Salas criadas"
 
 puts "Criando Reuniões"
 
-Meeting.create(room: cleo, user_id: 2, duration_minutes: 1800, date: "21/01/2021", start_time:"08:00", title: "Reunião Matinal")
-Meeting.create(room: cleo, user_id: 3, duration_minutes: 3600, date: "21/01/2021", start_time:"09:00", title: "Plano de Marketing")
-Meeting.create(room: cleo, user_id: 2, duration_minutes: 7200, date: "21/01/2021", start_time:"12:00", title: "Plano 2o trimestre")
+Meeting.create(room: cleo, user_id: 2, duration_minutes: 30, date: "21/01/2021", start_time:"08:00", title: "Reunião Matinal")
+Meeting.create(room: cleo, user_id: 3, duration_minutes: 60, date: "21/01/2021", start_time:"09:00", title: "Plano de Marketing")
+Meeting.create(room: cleo, user_id: 2, duration_minutes: 120, date: "21/01/2021", start_time:"12:00", title: "Plano 2o trimestre")
 
 puts "Reuniões Criadas"
 
