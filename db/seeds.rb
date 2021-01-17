@@ -27,9 +27,9 @@ puts "Criando Reuniões"
 Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "18/01/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
 Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "25/01/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
 Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "01/02/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
-Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "08/01/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
-Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "15/01/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
-Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "22/01/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
+Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "08/02/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
+Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "15/02/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
+Meeting.create(room: mlkj, user_id: 3, duration_minutes: 60, date: "22/02/2021", start_time:"09:00", title: "Reunião Semanal de Marketing")
 
 # Reuniões Matinais
 
