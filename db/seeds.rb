@@ -29,3 +29,5 @@ Meeting.create(room: cleo, user_id: 2, duration_minutes: 7200, date: "21/01/2021
 puts "Reuniões Criadas"
 
 
+
+
