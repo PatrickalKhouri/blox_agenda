@@ -1,4 +1,4 @@
-<h1>Seja bem vindo!</h1>
+<h1>Agenda Blox</h1>
 
 <div class="meetings">
 <% @meetings.each do |meeting| %>
@@ -10,9 +10,6 @@
                 method: :delete,
                 data: { confirm: "Tem certeza que quer deletar a reunião #{meeting.title}?" },
                 class: "btn btn-warning" %>
+    <% end %>
   <% end %>
-<% end %>
-  <div>
-    <%= link_to "Nova Reunião", new_meeting_path, class: 'btn btn-primary' %>
-  </div>
 </div>
