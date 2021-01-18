@@ -18,10 +18,10 @@ class MeetingsController < ApplicationController
     @meeting.user = current_user
     @meetings_on_same_day_and_room = Meeting.where(date: @meeting.date, room: @meeting.room )
     end_time = final_time(@meeting)
-    if check_business_hours(@meeting)
-      flash[:alert] = "Reuniões só podem ser marcadas das 8 as 18h"
-      render :new 
-    else
+    #if check_business_hours(@meeting)
+    #  flash[:alert] = "Reuniões só podem ser marcadas das 8 as 18h"
+    #  render :new 
+   # else
       start_end_array = start_and_end_times(@meetings_on_same_day_and_room)
       overlap_check = 0
       overlap_index = overlap(start_end_array, @meeting, end_time, overlap_check)
@@ -31,7 +31,7 @@ class MeetingsController < ApplicationController
       else
        create_meeting(@meeting)
       end
-   end
+   #end
   end
 
   def destroy

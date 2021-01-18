@@ -8,17 +8,19 @@ class Meeting < ApplicationRecord
              message: "Por favor colocar a data no formato correto/Insira uma data válida",
              multiline: true}
   #validate :comercial_hours, :on => :create
+  validates :comercial_hours, inclusion: { in: [true],
+            message: "Reunião fora do horário comercial" }
 
 private 
 
-#def comercial_hours
-#  duration_seconds = self.duration_minutes * 60
-#  end_time = self.start_time + duration_seconds
-#  if self.start_time.hour < 8 || end_time.hour >= 18
-#    false
-#  else
-#    true
-#  end
-# end
+def comercial_hours
+  duration_seconds = self.duration_minutes * 60
+  end_time = self.start_time + duration_seconds
+  unless self.start_time.hour < 8 || end_time.hour >= 18
+    true
+  else
+    false
+  end
+ end
 
 end
