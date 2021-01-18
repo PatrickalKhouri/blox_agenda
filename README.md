@@ -28,6 +28,8 @@ Ou se preferir pode criar um usuario e senha.
 
 ## Decisões Técnicas ##
 
+Primeiramente gostaria de agradecer a Blox pelo teste, mesmo que eu não passe de etapa ja foi um grande aprendizado realizar essa aplicação.
+
 Ao receber o projeto eu emulei uma de agenda de reuniões de uma empresa no qual os colaboradores estão em um mesmo ambiente fisico (visto que existe restrições de uso). P
 
 Para simplificar coloquei somente 3 tabelas, Usuário, Sala e Reunião, sendo que a reunião precisa de um usuario e uma sala para existir. 
